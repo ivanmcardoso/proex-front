@@ -1,7 +1,14 @@
 import React from 'react';
 import './App.css';
 import Routes from '../components/Routes';
+import toolBar from '../components/toolbar/toolbar';
 
-const App = ()=> <Routes/>
-
+const App = ()=> {
+    return (
+    <>
+        <toolBar/>
+        <Routes/>
+    </>
+    );
+}
 export default App;

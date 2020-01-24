@@ -1,0 +1,43 @@
+body{
+    text-align: center;
+    background-color: #2FB489;
+
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #333;
+    display: block;
+}
+
+.form-card{
+    width: 100%;
+}
+
+.login-form{
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 6px;
+    transition: 0.3s;
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.input-text{
+    width: calc(100% - 4px - 20px);
+    height: 24px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border-style: solid;
+    border-color: rgba(0,0,0,0.2);
+}
+
+.button-submit{
+    width: 100%;
+    height: 46px;
+    border-radius: 6px;
+    border: 0px;
+    color: #ffffff;
+    background-color: #337AB7;
+}

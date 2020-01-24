@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import {history} from '../../history'
+
+import './Login.scss'
+
 export default class Login extends Component {
     handleSubmit(event) {
         event.preventDefault();   
@@ -25,7 +28,7 @@ export default class Login extends Component {
         )
         .then(response =>{
             localStorage.setItem('auth-token', response.token)
-            history.push('/FootExam')
+            history.push('/')
             
         })
         .catch(error =>{
@@ -35,20 +38,27 @@ export default class Login extends Component {
     
     render(){
         return (
-            <>
-                <h1>Login</h1>
-                <p>Fill the fields to continue</p>
-    
+            <div className="login-form">
+                <h1 className="title-text">PROEX</h1>
+                <div className = "form-card">
                     <form onSubmit={this.handleSubmit.bind(this)}> 
-                        <div>
-                            <input type="text" ref={(input) => this.login = input}/>
-                        </div>
-                        <div>
-                            <input type="text" ref={(input) => this.senha = input}/>
-                        </div>
-                        <input type="submit" value="Login"/>
+                            <input 
+                                placeholder="Usuário"
+                                className="input-text" 
+                                type="text" 
+                                ref={(input) => this.login = input}
+                            />
+                            <input 
+                                placeholder="Senha"
+                                className="input-text" 
+                                type="text" 
+                                ref={(input) => this.senha = input}
+                            />
+
+                        <button className = "button-submit" type="submit">ENTRAR</button>
                     </form>
-            </>
+                </div>
+            </div>
         );
     }
 }
