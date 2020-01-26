@@ -9,7 +9,7 @@ import Pacients from '../pages/Pacient/Pacients'
 import PrivateRoute from "./PrivateRoute"
 import FootExam from "../pages/FootExam/FootExam"
 import NavBar from "./toolbar/Navbar"
-import User from "../pages/User/Register"
+import User from "../pages/User/User"
 
 const LoginContainer = () => {
     return(
