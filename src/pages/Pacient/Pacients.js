@@ -30,7 +30,9 @@ class Pacients extends Component {
                 <GenericTable
                     title = {title} 
                     header={header} 
-                    data={this.props.pacients}/>
+                    data={this.props.pacients}
+
+                    />
             </>
         )
     }
@@ -41,7 +43,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getAll: () => dispatch(pacientsThunk.getAll())
+    getAll: () => dispatch(pacientsThunk.getAll()),
+    deleteById: (id) => dispatch(pacientsThunk.deleteById(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pacients)

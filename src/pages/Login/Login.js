@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {history} from '../../history'
 
 import './Login.scss'
+import { API_PATH } from '../../enviroment';
 
 export default class Login extends Component {
     handleSubmit(event) {
@@ -17,7 +18,7 @@ export default class Login extends Component {
             headers: new Headers({
                 'Content-type':'application/json'
             })};
-        fetch('http://localhost:8080/auth/singin',requestInfo)
+        fetch(`${API_PATH}/auth/singin`,requestInfo)
         .then(res =>{
             if(res.ok){
                 return res.json();

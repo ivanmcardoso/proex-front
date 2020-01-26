@@ -15,7 +15,6 @@ class User extends Component{
     }
 
     render(){
-        console.log(this.props.users);
         
         const header = [
             { title: 'Nome', field: 'name' },
