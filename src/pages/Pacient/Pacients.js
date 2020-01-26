@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import {pacientsThunk} from '../../redux/thunks/pacientsThunk'
 import { connect } from 'react-redux'
 
+import './Pacients.scss'
+import GenericTable from "../../components/generic-table/generic-table"
+
 class Pacients extends Component {
 
     state = {
@@ -12,47 +15,14 @@ class Pacients extends Component {
         const {getAll} = this.props;
         getAll();
     }
-
-    renderTableData() {
-        return this.props.pacients.map((pacient, index) => {
-           const { id, name, age, cpf } = pacient 
-           return (
-              <tr key={id}>
-                 <td>{name}</td>
-                 <td>{age}</td>
-                 <td>{cpf}</td>
-              </tr>
-           )
-        })
-     }
-  
-  
-
+    
     render(){
-        const pacients = this.props.pacients;
-        if(pacients !== undefined){
-            pacients.forEach(element => {
-                console.log(element.name);
-            });
-
-        }
+        const header = ['id','nome','idade','cpf']
+        
         return (
             <>
             <h1>Pacients</h1>
-            <table className="todo-table">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Idade</th>
-                            <th>cpf</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {
-                            this.renderTableData()
-                        }                        
-                    </tbody>
-                </table>
+                <GenericTable header={header} data={this.props.pacients}/>
             </>
         )
     }

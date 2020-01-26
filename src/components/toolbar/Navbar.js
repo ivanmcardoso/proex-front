@@ -9,9 +9,13 @@ class NavBar extends Component {
         return (
             <>
                 <nav className= "navbar">
+                    <div className="menu-item">
                     <span className="nav-item" onClick={() => history.push('/')}> Home </span>
                     <span className="nav-item" onClick={() => history.push('/Pacients')}> Pacients </span>
+                    </div>
+                    <div className="logout">
                     <span className="nav-item"  onClick={() => {localStorage.clear(); history.push('/Login')}}> Logout </span>
+                    </div>
                 </nav>
             </>
             );
