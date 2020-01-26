@@ -8,6 +8,28 @@ import NotFound from './NotFound'
 import Pacients from '../pages/Pacient/Pacients'
 import PrivateRoute from "./PrivateRoute"
 import FootExam from "../pages/FootExam/FootExam"
+import NavBar from "./toolbar/Navbar"
+
+const LoginContainer = () => {
+    return(
+        <Route component = {Login} exact path="/Login"/>
+    )
+}
+
+const DefaultContainer = () => {
+    return (
+        <>
+            <NavBar/>
+            <Switch>
+                <Route component = {Register} exact path="/Register"/>
+                <PrivateRoute component = {Pacients}  path="/Pacients"/>
+                <PrivateRoute component = {FootExam}  path="/FootExam"/>
+                <PrivateRoute component = {Home} exact path="/"/>
+                <Route component = {NotFound}/>
+            </Switch>
+        </>
+        )
+    }
 
 export default class Routes extends Component {
 
@@ -15,12 +37,8 @@ export default class Routes extends Component {
        return ( 
         <Router history = {history}>
                 <Switch>
-                    <Route component = {Login} exact path="/Login"/>
-                    <Route component = {Register} exact path="/Register"/>
-                    <PrivateRoute component = {Pacients}  path="/Pacients"/>
-                    <PrivateRoute component = {FootExam}  path="/FootExam"/>
-                    <PrivateRoute component = {Home} exact path="/"/>
-                    <Route component = {NotFound}/>
+                <Route exact path="/Login" component={LoginContainer}/>
+                 <Route component={DefaultContainer}/>
                 </Switch>
             </Router>
         ); 
