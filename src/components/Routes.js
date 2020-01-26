@@ -9,6 +9,7 @@ import Pacients from '../pages/Pacient/Pacients'
 import PrivateRoute from "./PrivateRoute"
 import FootExam from "../pages/FootExam/FootExam"
 import NavBar from "./toolbar/Navbar"
+import User from "../pages/User/Register"
 
 const LoginContainer = () => {
     return(
@@ -23,6 +24,7 @@ const DefaultContainer = () => {
             <Switch>
                 <Route component = {Register} exact path="/Register"/>
                 <PrivateRoute component = {Pacients}  path="/Pacients"/>
+                <PrivateRoute component = {User}  path="/User"/>
                 <PrivateRoute component = {FootExam}  path="/FootExam"/>
                 <PrivateRoute component = {Home} exact path="/"/>
                 <Route component = {NotFound}/>

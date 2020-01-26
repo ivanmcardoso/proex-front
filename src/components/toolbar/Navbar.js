@@ -11,7 +11,8 @@ class NavBar extends Component {
                 <nav className= "navbar">
                     <div className="menu-item">
                     <span className="nav-item" onClick={() => history.push('/')}> Home </span>
-                    <span className="nav-item" onClick={() => history.push('/Pacients')}> Pacients </span>
+                    <span className="nav-item" onClick={() => history.push('/Pacients')}> Pacientes </span>
+                    <span className="nav-item" onClick={() => history.push('/User')}> Usuários </span>
                     </div>
                     <div className="logout">
                     <span className="nav-item"  onClick={() => {localStorage.clear(); history.push('/Login')}}> Logout </span>

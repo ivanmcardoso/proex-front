@@ -17,12 +17,20 @@ class Pacients extends Component {
     }
     
     render(){
-        const header = ['id','nome','idade','cpf']
+        const header = [
+        { title: 'Nome', field: 'name' },
+        { title: 'Idade', field: 'age' },
+        { title: 'Cpf', field: 'cpf' },
+        ];
+
+        const title = "Pacientes";
         
         return (
             <>
-            <h1>Pacients</h1>
-                <GenericTable header={header} data={this.props.pacients}/>
+                <GenericTable
+                    title = {title} 
+                    header={header} 
+                    data={this.props.pacients}/>
             </>
         )
     }
