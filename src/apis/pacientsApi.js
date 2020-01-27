@@ -13,10 +13,15 @@ export const pacientsApi = {
     deleteById: (id) => {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` },
-            data: {
-                id: id
-            }
+            params: { id: id}
         };
         return Axios.delete(`${API_PATH}/api/pacients`, config).then(res => res.data).catch(error => {localStorage.clear()});
+    },
+    
+    post: (data) => {
+        const config = {
+            headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` },
+        }
+        return Axios.post(`${API_PATH}/api/pacients`, data, config).then(res => res.data).catch(error => {localStorage.clear()});
     }
 }

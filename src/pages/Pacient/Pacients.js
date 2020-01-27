@@ -31,7 +31,7 @@ class Pacients extends Component {
                     title = {title} 
                     header={header} 
                     data={this.props.pacients}
-
+                    {...this.props}
                     />
             </>
         )
@@ -44,7 +44,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getAll: () => dispatch(pacientsThunk.getAll()),
-    deleteById: (id) => dispatch(pacientsThunk.deleteById(id))
+    deleteById: (id) => dispatch(pacientsThunk.deleteById(id)),
+    post: (data) => dispatch(pacientsThunk.post(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pacients)

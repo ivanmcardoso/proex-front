@@ -29,7 +29,8 @@ class User extends Component{
                     <GenericTable
                         title = {title} 
                         header={header} 
-                        data={this.props.users}/>
+                        data={this.props.users}
+                        {...this.props}/>
                 </>
             )
     }
@@ -40,7 +41,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    getAll: () => dispatch(userThunk.getAll())
+    getAll: () => dispatch(userThunk.getAll()),
+    deleteById: (id) => dispatch(userThunk.deleteById(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(User)

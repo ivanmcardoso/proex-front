@@ -18,6 +18,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 export default class GenericTable extends Component {
 
+
   render(){
 
     const tableIcons = {
@@ -40,7 +41,6 @@ export default class GenericTable extends Component {
         ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
       };
 
-
   
     
     return (
@@ -49,13 +49,26 @@ export default class GenericTable extends Component {
         title={this.props.title}
         columns={this.props.header}
         data={this.props.data} 
+        actions={[
+          {
+            icon: tableIcons.Add,
+            tooltip: 'Add User',
+            isFreeAction: true,
+            onClick: (event) => alert("You want to add a new row")
+          }
+        ]}
         editable={{
           onRowDelete: oldData =>
           new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-            }, 600);
+            this.props.deleteById(oldData.id);
+            resolve();
           }),
+          onRowAdd: newData =>
+          new Promise(resolve =>{
+            if(this.props.users === undefined)
+              this.props.post(newData);
+            resolve();
+          })
         }}         
       />
     );

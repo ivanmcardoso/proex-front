@@ -1,5 +1,5 @@
 import {pacientsApi} from '../../apis/pacientsApi'
-import {listPacients,deletePacient} from '../actions/pacientActions'
+import {listPacients,deletePacient, registerPacient} from '../actions/pacientActions'
 
 export const pacientsThunk = {
     getAll: () => dispatch => {
@@ -8,6 +8,10 @@ export const pacientsThunk = {
     },
     deleteById: (id) => dispatch => {
         pacientsApi.deleteById(id)
-        .then(pacients => dispatch(deletePacient(pacients)) )
+        .then(() => dispatch(deletePacient(id)) )
+    },
+    post: (data) => dispatch => {
+        pacientsApi.post(data)
+        .then(data => dispatch(registerPacient(data)))
     }
 }
