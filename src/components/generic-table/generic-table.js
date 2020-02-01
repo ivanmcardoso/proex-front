@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { forwardRef } from 'react';
+import {history} from '../../history'
+
 import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -16,6 +18,7 @@ import Remove from '@material-ui/icons/Remove';
 import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
+
 export default class GenericTable extends Component {
 
 
@@ -41,8 +44,13 @@ export default class GenericTable extends Component {
         ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
       };
 
-  
-    
+      var tooltip;
+      if(this.props.pacients){
+        tooltip = 'Listar Exames';
+      }
+      else {
+        tooltip = 'Detalhes'
+      }
     return (
       <MaterialTable
         icons = {tableIcons}
@@ -51,10 +59,16 @@ export default class GenericTable extends Component {
         data={this.props.data} 
         actions={[
           {
-            icon: tableIcons.Add,
-            tooltip: 'Add User',
-            isFreeAction: true,
-            onClick: (event) => alert("You want to add a new row")
+            icon: tableIcons.DetailPanel,
+            tooltip:  tooltip,
+            hidden: !!this.props.users,
+            onClick: (event, rowData) =>{
+              if(!!this.props.pacients){
+                history.push('/FootExam/'+rowData.id)
+              } else if(!!this.props.footExams){
+                alert(rowData.id)
+              }
+            } 
           }
         ]}
         editable={{

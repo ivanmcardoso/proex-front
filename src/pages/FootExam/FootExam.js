@@ -1,23 +1,47 @@
 import React, { Component } from "react"
-import Axios from "axios"
+import { connect } from 'react-redux'
+import { footExamThunk } from "../../redux/thunks/footExamThunk";
+import GenericTable from "../../components/generic-table/generic-table";
 
-export default class FootExam extends Component {
+class FootExam extends Component {
+
     
-    componentDidMount(){
-        const config = {
-            headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}` }
-        };
-        
-        Axios.get('http://localhost:8080/api/footExam', config)
-        .then( res => {
-            console.log(res.data);
-        });
 
+    state = {
+        footExams: []
+    }
+
+    componentWillMount(){
+        const {getAll} = this.props;
+        getAll(this.props.match.params.id);
     }
 
     render(){
+        
+        const header = [
+            { title: 'ID', field: 'id' },
+            { title: 'ultima atualização', field: 'dataChangeLastModifiedTime' },
+            ];
+    
+        const title = "Exames";
+     
         return (
-            <h1>Foot Exam</h1>
+            <GenericTable
+            title = {title} 
+            header={header} 
+            data={this.props.footExams}
+            {...this.props}
+            />
         )
     }
 }
+
+const mapStateToProps = state => ({
+    footExams: state.FootExamReducer.footExams
+})
+
+const mapDispatchToProps = dispatch => ({
+    getAll: (id) => dispatch(footExamThunk.getAll(id)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FootExam)

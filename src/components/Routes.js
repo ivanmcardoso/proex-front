@@ -25,7 +25,7 @@ const DefaultContainer = () => {
                 <Route component = {Register} exact path="/Register"/>
                 <PrivateRoute component = {Pacients}  path="/Pacients"/>
                 <PrivateRoute component = {User}  path="/User"/>
-                <PrivateRoute component = {FootExam}  path="/FootExam"/>
+                <PrivateRoute component = {FootExam}  path="/FootExam/:id"/>
                 <PrivateRoute component = {Home} exact path="/"/>
                 <Route component = {NotFound}/>
             </Switch>
