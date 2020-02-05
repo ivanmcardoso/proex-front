@@ -1,17 +1,20 @@
+.nav-item{
+    padding: 10px;
+    color: #ffffff !important;
+}
+
 .nav-item:hover{
     cursor: pointer;
+    background-color: var(--light-blue) !important;
 }
 
 .navbar{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     height: 20px;
     padding: 20px;
     text-align: right;
     color: var(--white);
     background-color: var(--dark-blue);
-}
-
-.menu-item{
-
 }

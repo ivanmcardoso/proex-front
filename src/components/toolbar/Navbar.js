@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {history} from '../../history'
+import Button from '@material-ui/core/Button';
 import './Navbar.scss'
 
 class NavBar extends Component {
@@ -10,12 +11,12 @@ class NavBar extends Component {
             <>
                 <nav className= "navbar">
                     <div className="menu-item">
-                    <span className="nav-item" onClick={() => history.push('/')}> Home </span>
-                    <span className="nav-item" onClick={() => history.push('/Pacients')}> Pacientes </span>
-                    <span className="nav-item" onClick={() => history.push('/User')}> Usuários </span>
+                    <Button className="nav-item" onClick={() => history.push('/')}> Inicio </Button>
+                    <Button className="nav-item" onClick={() => history.push('/Pacients')}> Pacientes </Button>
+                    <Button className="nav-item" onClick={() => history.push('/User')}> Usuários </Button>
                     </div>
                     <div className="logout">
-                    <span className="nav-item"  onClick={() => {localStorage.clear(); history.push('/Login')}}> Logout </span>
+                    <Button className="nav-item"  onClick={() => {localStorage.clear(); history.push('/Login')}}> Sair </Button>
                     </div>
                 </nav>
             </>
