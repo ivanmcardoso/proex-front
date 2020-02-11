@@ -1,27 +1,39 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {history} from '../../history'
 import MaterialTable from 'material-table';
 import { tableIcons } from '../../utils/tableIcons';
 
+import './generic-table.scss'
+import ConfirmDialog from '../confirm-dialog/confirm-dialog'
 
-export default class GenericTable extends Component {
+const GenericTable = (props) => {
 
+  const [open, setOpen] = useState(0);
 
-  render(){
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
 
-      var tooltip;
-      if(this.props.pacients){
-        tooltip = 'Listar Exames';
-      }
-      else {
-        tooltip = 'Detalhes'
-      }
+    const handleClose = () => {
+      setOpen(false);
+    };
+
+    var tooltip;
+    if(props.pacients){
+      tooltip = 'Listar Exames';
+    }
+    else {
+      tooltip = 'Detalhes'
+    }
+    
+
     return (
+      <div className="table">
       <MaterialTable
         icons = {tableIcons}
-        title={this.props.title}
-        columns={this.props.header}
-        data={this.props.data} 
+        title={props.title}
+        columns={props.header}
+        data={props.data} 
         options={{
           actionsColumnIndex: -1
         }}
@@ -29,11 +41,11 @@ export default class GenericTable extends Component {
           {
             icon: tableIcons.List,
             tooltip:  tooltip,
-            hidden: !!this.props.users,
+            hidden: !!props.users,
             onClick: (event, rowData) =>{
-              if(!!this.props.pacients){
+              if(!!props.pacients){
                 history.push('/FootExam/'+rowData.id)
-              } else if(!!this.props.footExams){
+              } else if(!!props.footExams){
                 alert(rowData.id)
               }
             } 
@@ -41,24 +53,30 @@ export default class GenericTable extends Component {
           {
             icon: tableIcons.AddLine,
             tooltip: 'novo exame',
-            hidden: !this.props.pacients,
-            onClick: (event, rowData) => console.log(rowData.id)
+            hidden: !props.pacients,
+            onClick: (event, rowData) => {
+              console.log(rowData.id);
+              handleClickOpen();
+            }
           }
         ]}
         editable={{
           onRowDelete: oldData =>
           new Promise(resolve => {
-            this.props.deleteById(oldData.id);
+            props.deleteById(oldData.id);
             resolve();
           }),
           onRowAdd: newData =>
           new Promise(resolve =>{
-            if(this.props.users === undefined)
-              this.props.post(newData);
+            if(props.users === undefined)
+              props.post(newData);
             resolve();
           })
         }}         
       />
+      <ConfirmDialog title={"Deseja marcar novo exame ?"} contentText={""} open={open} onClose={handleClose} ></ConfirmDialog>
+      </div>
     );
-  }
 }
+
+export default GenericTable
