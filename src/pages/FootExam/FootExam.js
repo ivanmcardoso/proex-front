@@ -42,6 +42,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     getAll: (id) => dispatch(footExamThunk.getAll(id)),
+    post: (id) => dispatch(footExamThunk.post(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(FootExam)

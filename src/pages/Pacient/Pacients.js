@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import './Pacients.scss'
 import GenericTable from "../../components/generic-table/generic-table"
+import { footExamThunk } from "../../redux/thunks/footExamThunk"
 
 class Pacients extends Component {
 
@@ -45,7 +46,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     getAll: () => dispatch(pacientsThunk.getAll()),
     deleteById: (id) => dispatch(pacientsThunk.deleteById(id)),
-    post: (data) => dispatch(pacientsThunk.post(data))
+    post: (data) => dispatch(pacientsThunk.post(data)),
+
+    scheduleFootExam: (id) => dispatch(footExamThunk.post(id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pacients)

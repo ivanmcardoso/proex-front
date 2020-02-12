@@ -12,7 +12,6 @@ export const FootExamReducer = (state = initialState, action) => {
                 ...state,
                 footExams: action.newValue
             };
-    
         default:
             return state
     }

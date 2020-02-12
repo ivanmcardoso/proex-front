@@ -8,13 +8,18 @@ import ConfirmDialog from '../confirm-dialog/confirm-dialog'
 
 const GenericTable = (props) => {
 
-  const [open, setOpen] = useState(0);
-
+  const [open, setOpen] = useState(false);
+  const [pacientId, setPacientId] = useState(0)
     const handleClickOpen = () => {
       setOpen(true);
     };
 
-    const handleClose = () => {
+    const handleClose = (value,id) => {      
+       if (value === 's'){
+        console.log(id);
+        props.scheduleFootExam(pacientId)
+        
+      }
       setOpen(false);
     };
 
@@ -46,7 +51,7 @@ const GenericTable = (props) => {
               if(!!props.pacients){
                 history.push('/FootExam/'+rowData.id)
               } else if(!!props.footExams){
-                alert(rowData.id)
+                alert('novidades em breve')
               }
             } 
           },
@@ -55,7 +60,7 @@ const GenericTable = (props) => {
             tooltip: 'novo exame',
             hidden: !props.pacients,
             onClick: (event, rowData) => {
-              console.log(rowData.id);
+              setPacientId(rowData.id);
               handleClickOpen();
             }
           }
@@ -74,7 +79,7 @@ const GenericTable = (props) => {
           })
         }}         
       />
-      <ConfirmDialog title={"Deseja marcar novo exame ?"} contentText={""} open={open} onClose={handleClose} ></ConfirmDialog>
+      <ConfirmDialog title={"Deseja marcar novo exame ?"} id={pacientId} contentText={""} open={open} onClose={handleClose} ></ConfirmDialog>
       </div>
     );
 }

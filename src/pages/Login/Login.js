@@ -54,7 +54,7 @@ export default class Login extends Component {
                             <input 
                                 placeholder="Senha"
                                 className="input-text" 
-                                type="text" 
+                                type="password" 
                                 ref={(input) => this.senha = input}
                             />
 

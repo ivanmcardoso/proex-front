@@ -9,12 +9,21 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 const ConfirmDialog = (props) => {
 
-    const { title, contentText ,onClose, open } = props;
+    const { title, contentText ,onClose, open, id } = props;    
+
+    const handleOnClose = value => {
+      onClose(value,id)
+    }
+
+    const deafultClose = () => {
+      onClose('n')
+    }
+
     return(
         <div>
         <Dialog
             open = {open}
-            onClose = {onClose}
+            onClose = {deafultClose}
           >
            <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
             <DialogContent>
@@ -23,10 +32,10 @@ const ConfirmDialog = (props) => {
               </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={onClose} color="primary">
+              <Button autoFocus onClick={() => handleOnClose('n')} color="primary">
                 não
               </Button>
-              <Button onClick={onClose} color="primary" autoFocus>
+              <Button onClick={() => handleOnClose('s')} color="primary" autoFocus>
                 sim
               </Button>
             </DialogActions>
