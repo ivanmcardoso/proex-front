@@ -14,9 +14,8 @@ export const footExamApi = {
     post: (id) => {
         const config = {
             headers: { Authorization: `Bearer ${localStorage.getItem('auth-token')}`},
-            params: {userId: id}
         };
-        return Axios.post(`${API_PATH}/api/footExam`, null,config)
+        return Axios.post(`${API_PATH}/api/footExam`, {userId: id},config)
         .then( res => res.data)
         .catch(error => {localStorage.clear()});
     }
