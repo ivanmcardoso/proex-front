@@ -3,38 +3,28 @@ import {history} from '../../history'
 
 import './Login.scss'
 import { API_PATH } from '../../enviroment';
+import Axios from 'axios';
 
 export default class Login extends Component {
     handleSubmit(event) {
-        event.preventDefault();   
-
-        const requestInfo = {
-            method:'POST',
-            body:JSON.stringify(
-                {
-                    username:this.login.value,
-                    password:this.senha.value
-                }),
-            headers: new Headers({
-                'Content-type':'application/json'
-            })};
-        fetch(`${API_PATH}/auth/singin`,requestInfo)
-        .then(res =>{
-            if(res.ok){
-                return res.json();
-            } else {
-                throw new Error();
-            }
-        }   
-        )
-        .then(response =>{
-            localStorage.setItem('auth-token', response.token)
+        event.preventDefault();  
+        var login = this.login.value;
+        var senha = this.senha.value;
+        
+        Axios.post(`${API_PATH}/oauth/token`, null, {
+            auth: {
+                username: 'proex',
+                password: '123'
+              },
+              params:{
+                grant_type: 'password',
+                username: login,
+                password: senha
+              }
+        }).then((response) => {
+            localStorage.setItem('auth-token', response.data.access_token)
             history.push('/')
-            
         })
-        .catch(error =>{
-        }
-        )
     }
     
     render(){
